@@ -1,0 +1,35 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+
+<div class="bg-white" style="padding:50px; min-height:65%">
+	<div class="container bg-white table-responsive">
+		<h4>Bancos</h4>
+		<table class="table table-condensed table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>				
+					<th>Código</th>
+					<th>Nombre</th>
+					<th>NIT</th>
+					<th># de cuenta</th>
+					<th colspan="3">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="banco :${bancos}">
+					<td th:text="${banco.id_banco}"/>
+					<td th:text="${banco.codigo}"/>
+					<td th:text="${banco.nombre}"/>
+					<td th:text="${banco.nit}"/>
+					<td th:text="${banco.numero_cuenta}"/>
+					<td><a th:href="@{/ver/} + ${banco.id_banco}">Ver</a></td>
+					<td><a th:href="@{/modificar/} + ${banco.id_banco}">Modificar</a></td>
+					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/eliminar/} + ${banco.id_banco}">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/crear}"> Nuevo banco</a>
+	</div>
+</div>
+
+<th:block th:include="./layouts/layout :: footer"></th:block>

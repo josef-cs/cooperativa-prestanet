@@ -1,0 +1,14 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<ul>
+<li th:text="${banco.id_banco}">
+<li th:text="${banco.nombre}">
+<li th:text="${banco.codigo}">
+<li th:text="${banco.nit}">
+<li th:text="${banco.numero_cuenta}">
+</ul>
+</div>
+</div>
+<th:block th:include="./layouts/layout :: footer"></th:block>
