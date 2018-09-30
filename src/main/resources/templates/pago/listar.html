@@ -29,12 +29,13 @@
 					<td th:text="${pago.estado}"/>
 					<td th:text="${pago.cuota.numero_cuota}"/>
 					<td th:text="${pago.cuota.fecha_limite}"/>
-					<td><a th:href="@{/pago/eliminar/} + ${pago.id_pago}">Ver</a></td>
-					<td><a th:href="@{/pago/eliminar/} + ${pago.id_pago}">Modificar</a></td>
+					<td><a th:href="@{/pago/ver/} + ${pago.id_pago}">Ver</a></td>
+					<td><a th:href="@{/pago/modificar/} + ${pago.id_pago}">Modificar</a></td>
 					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/pago/eliminar/} + ${pago.id_pago}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
+		<a href="/pago/crear">Hacer pago</a>
 	</div>
 </div>
 

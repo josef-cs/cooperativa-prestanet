@@ -18,13 +18,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sv.com.cooperativa.models.entities.Solicitud;
 import sv.com.cooperativa.models.services.ISolicitud;
-
+import sv.com.cooperativa.models.services.ICliente;
+import sv.com.cooperativa.models.entities.Cliente;
+import sv.com.cooperativa.models.services.IEmpleadoService;
+import sv.com.cooperativa.models.entities.Empleado;
 @Controller
 @SessionAttributes("solicitud")
 public class SolicitudController {
 
 	@Autowired
 	private ISolicitud solicitudService;
+	@Autowired
+	private ICliente clienteService;
+	@Autowired
+	private IEmpleadoService empleadoService;
 	
 	@RequestMapping(value="/solicitud/listar", method=RequestMethod.GET)
 	public String listar(Model model)
@@ -38,6 +45,8 @@ public class SolicitudController {
 	public String crear(Map<String, Object> model)
 	{
 		Solicitud solicitud = new Solicitud();
+		model.put("clientes", clienteService.findAll());
+		model.put("empleados", empleadoService.findAll());
 		model.put("solicitud", solicitud);
 		model.put("titulo", "Solicitud");
 		return "solicitud/crear";
@@ -55,12 +64,12 @@ public class SolicitudController {
 	public String guardar(@ModelAttribute("solicitud") @Valid Solicitud solicitud, BindingResult bindingResult, RedirectAttributes flash, SessionStatus sessionStatus)
 	{
 		if(bindingResult.hasErrors()) {
-			return "solicitud/crear";
+			return "/solicitud/crear";
 		}
 		solicitudService.Save(solicitud);
 		sessionStatus.setComplete();
 		flash.addFlashAttribute("success", "Solicitud creada con exito");
-		return "redirect:solicitud/listar";
+		return "redirect:/solicitud/listar";
 	}
 	
 	@RequestMapping(value="/solicitud/modificar/{id}", method=RequestMethod.GET)

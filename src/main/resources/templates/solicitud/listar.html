@@ -6,23 +6,28 @@
 		<table class="table-condensed table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th>DUI</th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
+					<th>ID de Solicitud</th>
+					<th>Cliente</th>
+					<th>Fecha</th>
+					<th>Monto</th>
+					<th>Estado</th>
 					<th colspan="3">Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cliente :${clientes}">
-					<td th:text="${cliente.dui_cliente}"/>
-					<td th:text="${cliente.nombres}"/>
-					<td th:text="${cliente.apellidos}"/>
-					<td><a th:href="@{/cliente/ver/} + ${cliente.dui_cliente}">Ver</a></td>
-					<td><a th:href="@{/cliente/modificar/} + ${cliente.dui_cliente}">Modificar</a></td>
-					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/cliente/eliminar/} + ${cliente.dui_cliente}">Eliminar</a></td>
+				<tr th:each="solicitud :${solicitudes}">
+					<td th:text="${solicitud.id_solicitud}"/>
+					<td th:text="${solicitud.cliente.nombres} + ' ' + ${solicitud.cliente.apellidos}"/>
+					<td th:text="${solicitud.fecha}"/>
+					<td th:text="@{$} + ${solicitud.monto}"/>
+					<td th:text="${solicitud.estado}"/>
+					<td><a th:href="@{/solicitud/ver/} + ${solicitud.id_solicitud}">Ver</a></td>
+					<td><a th:href="@{/cliente/modificar/} + ${solicitud.id_solicitud}">Modificar</a></td>
+					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/solicitud/eliminar/} + ${solicitud.id_solicitud}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
+		<a href="/solicitud/crear">Nueva solicitud</a>
 	</div>
 </div>
 

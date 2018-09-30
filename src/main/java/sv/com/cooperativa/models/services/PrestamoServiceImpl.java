@@ -40,4 +40,7 @@ public class PrestamoServiceImpl implements IPrestamo{
 	{
 		prestamoDao.deleteById(id_prestamo);
 	}
+	
+
+
 }

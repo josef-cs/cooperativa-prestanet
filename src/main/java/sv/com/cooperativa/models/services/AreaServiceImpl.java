@@ -23,7 +23,7 @@ public class AreaServiceImpl implements IArea{
 	
 	@Override
 	@Transactional
-	public Area findOne(Long id_area)
+	public Area findOne(Integer id_area)
 	{
 		return areaDao.findById(id_area).orElse(null);
 	}
@@ -37,7 +37,7 @@ public class AreaServiceImpl implements IArea{
 	
 	@Override
 	@Transactional
-	public void delete(Long id_area)
+	public void delete(Integer id_area)
 	{
 		areaDao.deleteById(id_area);
 	}

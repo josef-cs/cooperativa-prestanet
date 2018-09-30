@@ -1,0 +1,22 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<form th:action="@{/area/guardar}" id="area" name="area" th:object="${area}" method="post" >
+
+	<div class="form-group">
+    	<label for="nombre">Nombre</label>
+    	<input type="text" class="form-control" id="nombre" placeholder="Nombre" th:field="*{nombre}"/>
+    	<small th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group">
+    	<label for="codigo">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" placeholder="Descripcion" th:field="*{descripcion}"/>
+    	<small th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" class="form-text text-danger"></small>
+  	</div>
+  	<input type="submit" class="btn btn-primary" value="Guardar" />
+</form>
+</div>
+</div>
+
+<th:block th:include="./layouts/layout :: footer"></th:block>

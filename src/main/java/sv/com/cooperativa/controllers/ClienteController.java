@@ -33,13 +33,13 @@ public class ClienteController {
 		return "clientes/listar";
 	}
 	
-	@RequestMapping(value="/cliente/modificar")
+	@RequestMapping(value="/cliente/crear")
 	public String crear(Map<String, Object> model)
 	{
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
 		model.put("titulo", "Modificar Cliente");
-		return "cliente/crear";
+		return "/clientes/crear";
 	}
 	
 	@RequestMapping(value="/cliente/eliminar/{id}", method=RequestMethod.GET)
@@ -47,19 +47,25 @@ public class ClienteController {
 	{
 		clienteService.delete(dui_cliente);		
 		flash.addFlashAttribute("success","Cliente eliminado con exito");
-		return "redirect:/cliente/listar";
+		return "redirect:/clientes/listar";
 	}
 	
 	@RequestMapping(value="/cliente/guardar", method=RequestMethod.POST)
-	public String guardar(@ModelAttribute("banco") @Valid Cliente cliente, BindingResult bindingResult, RedirectAttributes flash, SessionStatus sessionStatus)
+	public String guardar(@ModelAttribute("cliente") @Valid Cliente cliente, BindingResult bindingResult, RedirectAttributes flash, SessionStatus sessionStatus)
 	{
 		if(bindingResult.hasErrors()) {
-			return "banco/crear";
+			return "/clientes/crear";
 		}
+		/*Cliente cli = null;
+		cli = clienteService.findOne(cliente.getDui_cliente());
+		if(cli != null)
+		{
+			return "Ya existe este dui";
+		}*/
 		clienteService.Save(cliente);
 		sessionStatus.setComplete();
 		flash.addFlashAttribute("success", "Cliente creado con exito");
-		return "redirect:cliente/listar";
+		return "redirect:/cliente/listar";
 	}
 	
 	@RequestMapping(value="/cliente/modificar/{id}", method=RequestMethod.GET)
@@ -69,15 +75,15 @@ public class ClienteController {
 		cliente = clienteService.findOne(dui_cliente);
 		model.put("cliente", cliente);
 		model.put("titulo", "Editar Cliente");
-		return "cliente/crear";
+		return "/clientes/crear";
 	}
 	
 	@RequestMapping(value="/cliente/ver/{id}", method=RequestMethod.GET)
 	public String ver(@PathVariable(value="id") String dui_cliente, Map<String, Object> model)
 	{
 		Cliente cliente = clienteService.findOne(dui_cliente);
-		model.put("banco", cliente);
+		model.put("cliente", cliente);
 		model.put("titulo", "Ver Banco");
-		return "cliente/ver";
+		return "/clientes/ver";
 	}
 }

@@ -18,13 +18,28 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sv.com.cooperativa.models.entities.Prestamo;
 import sv.com.cooperativa.models.services.IPrestamo;
-
+import sv.com.cooperativa.models.entities.Cliente;
+import sv.com.cooperativa.models.services.ICliente;
+import sv.com.cooperativa.models.entities.Empleado;
+import sv.com.cooperativa.models.services.IEmpleadoService;
+import sv.com.cooperativa.models.entities.TasaInteres;
+import sv.com.cooperativa.models.services.ITasaInteres;
+import sv.com.cooperativa.models.entities.Solicitud;
+import sv.com.cooperativa.models.services.ISolicitud;
 @Controller
 @SessionAttributes("prestamo")
 public class PrestamoController {
 
 	@Autowired
 	private IPrestamo prestamoService;
+	@Autowired
+	private ICliente clienteService;
+	@Autowired
+	private IEmpleadoService empleadoService;
+	@Autowired
+	private ITasaInteres tasainteresService;
+	@Autowired
+	private ISolicitud solicitudService;
 	
 	@RequestMapping(value="/prestamo/listar", method=RequestMethod.GET)
 	public String listar(Model model)
@@ -39,6 +54,10 @@ public class PrestamoController {
 	{
 		Prestamo prestamo = new Prestamo();
 		model.put("prestamo", prestamo);
+		model.put("clientes", clienteService.findAll());
+		model.put("empleados", empleadoService.findAll());
+		model.put("tasasinteres", tasainteresService.findAll());
+		model.put("solicitudes", solicitudService.findAll());
 		model.put("titulo", "Prestamos");
 		return "prestamo/crear";
 	}
@@ -55,12 +74,12 @@ public class PrestamoController {
 	public String guardar(@ModelAttribute("prestamo") @Valid Prestamo prestamo, BindingResult bindingResult, RedirectAttributes flash, SessionStatus sessionStatus)
 	{
 		if(bindingResult.hasErrors()) {
-			return "prestamo/crear";
+			return "/prestamo/crear";
 		}
 		prestamoService.Save(prestamo);
 		sessionStatus.setComplete();
 		flash.addFlashAttribute("success", "Prestamo creado con exito");
-		return "redirect:prestamo/listar";
+		return "redirect:/prestamo/listar";
 	}
 	
 	@RequestMapping(value="/prestamo/modificar/{id}", method=RequestMethod.GET)

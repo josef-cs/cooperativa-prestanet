@@ -1,0 +1,72 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<form th:action="@{/empleado/guardar}" id="empleado" name="empleado" th:object="${empleado}" method="post" >
+	<div class="form-group col-lg-4">
+    	<label for="nombre">DUI</label>
+    	<input type="text" class="form-control" id="dui_empleado" placeholder="DUI" th:field="*{dui_empleado}"/>
+    	<small th:if="${#fields.hasErrors('dui_empleado')}" th:errors="*{dui_empleado}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group col-lg-4">
+    	<label for="codigo">Nombre</label>
+    	<input type="text" class="form-control" id="nombres" placeholder="Nombre" th:field="*{nombres}"/>
+    	<small th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="apellidos">Apellidos</label>
+    	<input type="text" class="form-control" id="apellidos" placeholder="Apellidos" th:field="*{apellidos}"/>
+    	<small th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group col-lg-4">
+    	<label for="nit">Direccion</label>
+    	<input type="text" class="form-control" id="direccion" placeholder="Direccion" th:field="*{direccion}"/>
+    	<small th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Fecha de nacimiento</label>
+    	<input type="text" class="form-control" id="fecha_nacimiento" placeholder="dd/mm/yyyy" th:field="*{fecha_nacimiento}"/>
+    	<small th:if="${#fields.hasErrors('fecha_nacimiento')}" th:errors="*{fecha_nacimiento}" class="form-text text-danger"></small>
+  	</div>  
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Fecha de ingreso al puesto</label>
+    	<input type="text" class="form-control" id="fecha_ingreso" placeholder="dd/mm/yyyy" th:field="*{fecha_ingreso}"/>
+    	<small th:if="${#fields.hasErrors('fecha_ingreso')}" th:errors="*{fecha_ingreso}" class="form-text text-danger"></small>
+  	</div> 
+  	<div class="form-group col-lg-4">
+    	<label for="nit">Telefono</label>
+    	<input type="text" class="form-control" id="telefono" placeholder="Telefono" th:field="*{telefono}"/>
+    	<small th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Celular</label>
+    	<input type="text" class="form-control" id="celular" placeholder="dd/mm/yyyy" th:field="*{celular}"/>
+    	<small th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}" class="form-text text-danger"></small>
+  	</div>  
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Correo</label>
+    	<input type="text" class="form-control" id="correo" placeholder="Correo" th:field="*{correo}"/>
+    	<small th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}" class="form-text text-danger"></small>
+  	</div> 	
+  	<div class="form-group col-lg-4">
+    	<label for="cargo">Cargo</label>
+    	<select th:field="*{cargo.id_cargo}" class="form-control">
+		    <option th:each="cargo : ${cargos}" th:value="${cargo.id_cargo}" th:text="${cargo.titulo}">
+		    </option>
+		</select>    	
+  	</div>  
+  	<div class="form-group col-lg-4">
+    	<label for="codigo">Estado</label>
+    	<select class="form-control" th:field="*{estado}">
+			    <option th:value="'A'" th:text="Activo"></option>
+			    <option th:value="'I'" th:text="Inactivo"></option>
+			    <option th:value="'O'" th:text="Oferente"></option>
+		</select>
+    	<small th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}" class="form-text text-danger"></small>
+  	</div> 			
+  	<input type="submit" class="btn btn-primary" value="Guardar" />
+</form>
+</div>
+</div>
+
+<th:block th:include="./layouts/layout :: footer"></th:block>

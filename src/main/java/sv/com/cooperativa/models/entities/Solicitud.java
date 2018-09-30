@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,20 +23,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="solicitudes")
 public class Solicitud {
 @Id
+@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "sol_seq")
+@SequenceGenerator(name = "sol_seq", sequenceName = "sol_seq", allocationSize=1)
 private Long id_solicitud;
 @Temporal(TemporalType.DATE)
-@DateTimeFormat(pattern="dd-MM-yyyy")
+@DateTimeFormat(pattern="dd/MM/yyyy")
 private Date fecha;
-@NotEmpty
+
 @NotNull
-private double monto;
-@NotEmpty
+private Double monto;
+
 @NotNull
 private String estado;
 
 @JoinColumn(name="cliente_dui")
 @OneToOne(fetch=FetchType.LAZY)
 private Cliente cliente;
+
+@JoinColumn(name="empleado_dui")
+@OneToOne(fetch=FetchType.LAZY)
+private Empleado empleado;
+
 public Cliente getCliente() {
 	return cliente;
 }
@@ -48,9 +56,7 @@ public Empleado getEmpleado() {
 public void setEmpleado(Empleado empleado) {
 	this.empleado = empleado;
 }
-@JoinColumn(name="empleado_dui")
-@OneToOne(fetch=FetchType.LAZY)
-private Empleado empleado;
+
 
 public Long getId_solicitud() {
 	return id_solicitud;
@@ -64,10 +70,10 @@ public Date getFecha() {
 public void setFecha(Date fecha) {
 	this.fecha = fecha;
 }
-public double getMonto() {
+public Double getMonto() {
 	return monto;
 }
-public void setMonto(double monto) {
+public void setMonto(Double monto) {
 	this.monto = monto;
 }
 public String getEstado() {

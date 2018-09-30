@@ -44,7 +44,7 @@ public class TasaInteresController {
 	}
 	
 	@RequestMapping(value="/tasainteres/eliminar/{id}", method=RequestMethod.DELETE)
-	public String eliminar(@PathVariable(value="id") Long id_tasa_interes, RedirectAttributes flash)
+	public String eliminar(@PathVariable(value="id") Integer id_tasa_interes, RedirectAttributes flash)
 	{
 		interesService.delete(id_tasa_interes);		
 		flash.addFlashAttribute("success","Tasa de interés eliminada con exito");
@@ -60,11 +60,11 @@ public class TasaInteresController {
 		interesService.Save(tasainteres);
 		sessionStatus.setComplete();
 		flash.addFlashAttribute("success", "Tasa de interés creada con exito");
-		return "redirect:remesa/listar";
+		return "redirect:/tasainteres/listar";
 	}
 	
 	@RequestMapping(value="/tasainteres/modificar/{id}", method=RequestMethod.GET)
-	public String modificar(@PathVariable(value="id") Long id_tasa_interes, RedirectAttributes flash, Map<String, Object> model)
+	public String modificar(@PathVariable(value="id") Integer id_tasa_interes, RedirectAttributes flash, Map<String, Object> model)
 	{
 		TasaInteres tasainteres = null;
 		tasainteres = interesService.findOne(id_tasa_interes);
@@ -74,7 +74,7 @@ public class TasaInteresController {
 	}
 	
 	@RequestMapping(value="/tasainteres/ver/{id}", method=RequestMethod.GET)
-	public String ver(@PathVariable(value="id") Long id_tasa_interes, Map<String, Object> model)
+	public String ver(@PathVariable(value="id") Integer id_tasa_interes, Map<String, Object> model)
 	{
 		TasaInteres tasainteres = interesService.findOne(id_tasa_interes);
 		model.put("tasainteres", tasainteres);

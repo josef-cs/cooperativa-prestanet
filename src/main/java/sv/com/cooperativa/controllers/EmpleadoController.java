@@ -1,5 +1,6 @@
 package sv.com.cooperativa.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -16,31 +17,37 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+import sv.com.cooperativa.models.entities.Cargo;
 import sv.com.cooperativa.models.entities.Empleado;
+import sv.com.cooperativa.models.services.ICargo;
 import sv.com.cooperativa.models.services.IEmpleadoService;
 
 @Controller
-@SessionAttributes("cuota")
+@SessionAttributes("empleado")
 public class EmpleadoController {
 
 	@Autowired
 	private IEmpleadoService empleadoService;
-	
+	@Autowired
+	private ICargo cargoService;
 	@RequestMapping(value="/empleado/listar", method=RequestMethod.GET)
 	public String listar(Model model)
 	{
 		model.addAttribute("titulo", "empleados");
 		model.addAttribute("empleados", empleadoService.findAll());
-		return "empleado/listar";
+		return "/empleado/listar";
 	}
 	
 	@RequestMapping(value="/empleado/crear")
 	public String crear(Map<String, Object> model)
 	{
 		Empleado empleado = new Empleado();
-		model.put("empleado", empleado);
+		List<Cargo> cargos = cargoService.findAll();
+		model.put("cargos", cargos);
+		model.put("empleado", empleado);		
 		model.put("titulo", "Empleados");
-		return "empleado/crear";
+		return "/empleado/crear";
 	}
 	
 	@RequestMapping(value="/empleado/eliminar/{id}", method=RequestMethod.DELETE)
@@ -52,23 +59,25 @@ public class EmpleadoController {
 	}
 	
 	@RequestMapping(value="/empleado/guardar", method=RequestMethod.POST)
-	public String guardar(@ModelAttribute("cuota") @Valid Empleado empleado, BindingResult bindingResult, RedirectAttributes flash, SessionStatus sessionStatus)
+	public String guardar(@ModelAttribute("empleado") @Valid Empleado empleado, BindingResult bindingResult, RedirectAttributes flash, SessionStatus sessionStatus)
 	{
 		if(bindingResult.hasErrors()) {
-			return "empleado/crear";
+			return "/empleado/crear";
 		}
 		empleadoService.Save(empleado);
 		sessionStatus.setComplete();
 		flash.addFlashAttribute("success", "Empleado creado con exito");
-		return "redirect:empleado/listar";
+		return "redirect:/empleado/listar";
 	}
 	
 	@RequestMapping(value="/empleado/modificar/{id}", method=RequestMethod.GET)
 	public String modificar(@PathVariable(value="id") String dui_empleado, RedirectAttributes flash, Map<String, Object> model)
 	{
 		Empleado empleado = null;
+		List<Cargo> cargos = cargoService.findAll();
 		empleado = empleadoService.findOne(dui_empleado);
 		model.put("empleado", empleado);
+		model.put("cargos", cargos);
 		model.put("titulo", "Editar Empleado");
 		return "empleado/crear";
 	}

@@ -1,11 +1,18 @@
 package sv.com.cooperativa.models.entities;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,38 +25,68 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="clientes")
 public class Cliente {
-@Id
+
+	@Id
+	@Column(unique=true)
 private String dui_cliente;
+
 @NotNull
 @NotEmpty
 private String nombres;
+
 @NotNull
 @NotEmpty
 private String apellidos;
+
 @NotNull
 @NotEmpty
+@Column(unique=true)
 private String nit;
+
 @Temporal(TemporalType.DATE)
-@DateTimeFormat(pattern="dd-MM-yyyy")
+@DateTimeFormat(pattern="dd/MM/yyyy")
 private Date fecha_nacimiento;
+
 @NotNull
 @NotEmpty
 private String telefono;
+
 @Email
 private String correo;
+
 @NotNull
 @NotEmpty
 private String estado;
+
 @NotNull
 @NotEmpty
 private String referente;
+
 @NotNull
 @NotEmpty
 private String telefono_referente;
+
 @NotNull
 @NotEmpty
 private String direccion_referente;
 
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+@JoinColumn(name="cliente_dui")
+private List<Prestamo> prestamos;
+
+public List<Prestamo> getPrestamos() {
+	return prestamos;
+}
+public void setPrestamos(List<Prestamo> prestamos) {
+	this.prestamos = prestamos;
+}
+public String getCelular() {
+	return celular;
+}
+public void setCelular(String celular) {
+	this.celular = celular;
+}
+private String celular;
 public String getDui_cliente() {
 	return dui_cliente;
 }

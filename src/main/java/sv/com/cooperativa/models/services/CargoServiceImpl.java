@@ -22,7 +22,7 @@ public class CargoServiceImpl implements ICargo{
 	
 	@Override
 	@Transactional
-	public Cargo findOne(Long id_cargo)
+	public Cargo findOne(Integer id_cargo)
 	{
 		return cargoDao.findById(id_cargo).orElse(null);
 	}
@@ -36,7 +36,7 @@ public class CargoServiceImpl implements ICargo{
 	
 	@Override
 	@Transactional
-	public void delete(Long id_banco)
+	public void delete(Integer id_banco)
 	{
 		cargoDao.deleteById(id_banco);
 	}

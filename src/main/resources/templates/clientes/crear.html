@@ -1,0 +1,75 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<form th:action="@{/cliente/guardar}" id="cliente" name="cliente" th:object="${cliente}" method="post" >
+
+	<div class="form-group">
+    	<label for="nombre">DUI*</label>
+    	<input type="text" class="form-control" id="dui_cliente" placeholder="DUI" th:field="*{dui_cliente}"/>
+    	<small th:if="${#fields.hasErrors('dui_cliente')}" th:errors="*{dui_cliente}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group">
+    	<label for="codigo">Nombres</label>
+    	<input type="text" class="form-control" id="nombres" placeholder="Nombres" th:field="*{nombres}"/>
+    	<small th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group">
+    	<label for="nit">Apellidos</label>
+    	<input type="text" class="form-control" id="apellidos" placeholder="Apellidos" th:field="*{apellidos}"/>
+    	<small th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group">
+    	<label for="numero_cuenta">NIT</label>
+    	<input type="text" class="form-control" id="nit" placeholder="NIT" th:field="*{nit}"/>
+    	<small th:if="${#fields.hasErrors('nit')}" th:errors="*{nit}" class="form-text text-danger"></small>
+  	</div>  
+  	<div class="form-group">
+    	<label for="numero_cuenta">Fecha de nacimiento</label>
+    	<input type="text" class="form-control" id="nit" placeholder="Fecha de nacimiento" th:field="*{fecha_nacimiento}"/>
+    	<small th:if="${#fields.hasErrors('fecha_nacimiento')}" th:errors="*{fecha_nacimiento}" class="form-text text-danger"></small>
+  	</div> 	
+  	<div class="form-group">
+    	<label for="numero_cuenta">Telefono</label>
+    	<input type="text" class="form-control" id="telefono" placeholder="Telefono" th:field="*{telefono}"/>
+    	<small th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="form-text text-danger"></small>
+  	</div> 
+  	<div class="form-group">
+    	<label for="numero_cuenta">Celular</label>
+    	<input type="text" class="form-control" id="celular" placeholder="Celular" th:field="*{celular}"/>
+    	<small th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}" class="form-text text-danger"></small>
+  	</div> 
+  	<div class="form-group">
+    	<label for="numero_cuenta">Correo</label>
+    	<input type="text" class="form-control" id="correo" placeholder="Correo" th:field="*{correo}"/>
+    	<small th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group">
+    	<label for="numero_cuenta">Referente</label>
+    	<input type="text" class="form-control" id="referente" placeholder="Referente" th:field="*{referente}"/>
+    	<small th:if="${#fields.hasErrors('referente')}" th:errors="*{referente}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group">
+    	<label for="numero_cuenta">Telefono del Referente</label>
+    	<input type="text" class="form-control" id="telefono_referente" placeholder="Telefono" th:field="*{telefono_referente}"/>
+    	<small th:if="${#fields.hasErrors('telefono_referente')}" th:errors="*{telefono_referente}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group">
+    	<label for="numero_cuenta">Direccion del referente</label>
+    	<input type="text" class="form-control" id="direccion_referente" placeholder="Direccion" th:field="*{direccion_referente}"/>
+    	<small th:if="${#fields.hasErrors('direccion_referente')}" th:errors="*{direccion_referente}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="codigo">Estado</label>
+    	<select class="form-control" th:field="*{estado}">
+			    <option th:value="'A'" th:text="Activo"></option>
+			    <option th:value="'I'" th:text="Inactivo"></option>
+		</select>
+    	<small th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}" class="form-text text-danger"></small>
+  	</div> 	
+  	<input type="submit" class="btn btn-primary" value="Guardar" />
+</form>
+</div>
+</div>
+
+<th:block th:include="./layouts/layout :: footer"></th:block>

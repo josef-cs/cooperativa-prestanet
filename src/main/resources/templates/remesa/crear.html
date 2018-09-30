@@ -1,0 +1,32 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<form th:action="@{/guardar}" id="banco" name="banco" th:object="${banco}" method="post" >
+
+	<div class="form-group">
+    	<label for="nombre">Nombre</label>
+    	<input type="text" class="form-control" id="nombre" placeholder="Nombre" th:field="*{nombre}"/>
+    	<small th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group">
+    	<label for="codigo">Codigo</label>
+    	<input type="text" class="form-control" id="codigo" placeholder="Codigo" th:field="*{codigo}"/>
+    	<small th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" class="form-text text-danger"></small>
+  	</div>
+	<div class="form-group">
+    	<label for="nit">NIT</label>
+    	<input type="text" class="form-control" id="nit" placeholder="NIT" th:field="*{nit}"/>
+    	<small th:if="${#fields.hasErrors('nit')}" th:errors="*{nit}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group">
+    	<label for="numero_cuenta"># de cuenta</label>
+    	<input type="text" class="form-control" id="numero_cuenta" placeholder="# de cuenta" th:field="*{numero_cuenta}"/>
+    	<small th:if="${#fields.hasErrors('numero_cuenta')}" th:errors="*{numero_cuenta}" class="form-text text-danger"></small>
+  	</div>  	
+  	<input type="submit" class="btn btn-primary" value="Guardar" />
+</form>
+</div>
+</div>
+
+<th:block th:include="./layouts/layout :: footer"></th:block>

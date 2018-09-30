@@ -1,0 +1,22 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<ul>
+<li th:text="'DUI: ' + ${empleado.dui_empleado}">
+<li th:text="'Nombres: ' + ${empleado.nombres}">
+<li th:text="'Apellidos: ' + ${empleado.apellidos}">
+<li th:text="'Direccion: ' + ${empleado.direccion}">
+<li th:text="'NIT: ' + ${empleado.nit}">
+<li th:text="'Fecha de nacimiento: ' + ${empleado.fecha_nacimiento}">
+<li th:text="'Fecha de ingreso: ' + ${empleado.fecha_ingreso}">
+<li th:text="'Teléfono: ' + ${empleado.telefono}">
+<li th:text="'Celular: ' + ${empleado.celular}">
+<li th:text="'Correo: ' + ${empleado.correo}">
+<li th:text="'Cargo: ' + ${empleado.cargo.titulo}">
+<li th:text="'Area: ' + ${empleado.cargo.area.nombre}">
+<li th:text="'Sueldo Base: $' + ${empleado.cargo.sueldo_base}">
+</ul>
+</div>
+</div>
+<th:block th:include="./layouts/layout :: footer"></th:block>

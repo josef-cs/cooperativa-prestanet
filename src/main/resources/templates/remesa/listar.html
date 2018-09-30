@@ -6,20 +6,28 @@
 		<table class="table-condensed table table-striped table-bordered">
 			<thead>
 				<tr>
-					<th>DUI</th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
+					<th>ID</th>
+					<th>Cliente DUI</th>
+					<th>ID Prestamo</th>
+					<th>ID Banco</th>
+					<th>Fecha</th>
+					<th>Monto</th>
+					<th>Estado</th>
 					<th colspan="3">Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cliente :${clientes}">
-					<td th:text="${cliente.dui_cliente}"/>
-					<td th:text="${cliente.nombres}"/>
-					<td th:text="${cliente.apellidos}"/>
-					<td><a th:href="@{/cliente/ver/} + ${cliente.dui_cliente}">Ver</a></td>
-					<td><a th:href="@{/cliente/modificar/} + ${cliente.dui_cliente}">Modificar</a></td>
-					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/cliente/eliminar/} + ${cliente.dui_cliente}">Eliminar</a></td>
+				<tr th:each="remesa :${remesas}">
+					<td th:text="${remesa.id_remosa}"/>
+					<td th:text="${remesa.cliente_dui}"/>
+					<td th:text="${remesa.prestamo_id}"/>
+					<td th:text="${remesa.banco_id}"/>
+					<td th:text="${remesa.fecha_deposito}"/>
+					<td th:text="${remesa.monto"/>
+					<td th:text="${remesa.estado}"/>
+					<td><a th:href="@{/prestamo/ver/} + ${remesa.id_remosa}">Ver</a></td>
+					<td><a th:href="@{/prestamo/modificar/} + ${remesa.id_remosa}">Modificar</a></td>
+					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/prestamo/eliminar/} + ${remesa.id_remosa}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>

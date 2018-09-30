@@ -1,0 +1,15 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<ul>
+<li th:text="'# de Solicitud: ' + ${solicitud.id_solicitud}">
+<li th:text="'DUI del Cliente: ' + ${solicitud.cliente.dui_cliente}">
+<li th:text="'Nombre del cliente: ' + ${solicitud.cliente.nombres} + ' ' + ${solicitud.cliente.apellidos}">
+<li th:text="'Fecha de la solicitud: ' + ${solicitud.fecha}">
+<li th:text="'Monto: ' + ${solicitud.monto}">
+<li th:text="'Estado: ' + ${solicitud.estado}">
+</ul>
+</div>
+</div>
+<th:block th:include="./layouts/layout :: footer"></th:block>

@@ -22,7 +22,7 @@ public class TasaInteresServiceImpl implements ITasaInteres{
 	
 	@Override
 	@Transactional
-	public TasaInteres findOne(Long id_tasa_interes)
+	public TasaInteres findOne(Integer id_tasa_interes)
 	{
 		return tasaInteresDao.findById(id_tasa_interes).orElse(null);
 	}
@@ -36,7 +36,7 @@ public class TasaInteresServiceImpl implements ITasaInteres{
 	
 	@Override
 	@Transactional
-	public void delete(Long id_tasa_interes)
+	public void delete(Integer id_tasa_interes)
 	{
 		tasaInteresDao.deleteById(id_tasa_interes);
 	}

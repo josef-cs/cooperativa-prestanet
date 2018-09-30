@@ -31,6 +31,7 @@ private String apellidos;
 @NotEmpty
 private String direccion;
 @NotEmpty
+@Column(unique=true)
 private String nit;
 @Temporal(TemporalType.DATE)
 @DateTimeFormat(pattern="dd-MM-yyyy")

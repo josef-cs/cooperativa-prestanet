@@ -1,0 +1,63 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<form th:action="@{/prestamo/guardar}" id="prestamo" name="prestamo" th:object="${prestamo}" method="post" >
+
+	<div class="form-group col-lg-4">
+    	<label for="nombre">Empleado que autoriza</label>
+    	<select th:field="*{empleado.dui_empleado}" class="form-control">
+		    <option th:each="empleado : ${empleados}" th:value="${empleado.dui_empleado}" th:text="${empleado.dui_empleado} + ' ' + ${empleado.nombres} + ' ' + ${empleado.apellidos}">
+		    </option>
+		</select> 
+  	</div>
+	<div class="form-group col-lg-4">
+    	<label for="nombre">Solicitud ID</label>
+    	<select th:field="*{solicitud.id_solicitud}" class="form-control">
+		    <option th:each="solicitud : ${solicitudes}" th:value="${solicitud.id_solicitud}" th:text="${solicitud.id_solicitud} + ' ' + ${solicitud.cliente.nombres} + ' ' + ${solicitud.cliente.apellidos}">
+		    </option>
+		</select> 
+  	</div>
+	<div class="form-group col-lg-4">
+    	<label for="nombre">Cliente</label>
+    	<select th:field="*{cliente.dui_cliente}" class="form-control">
+		    <option th:each="cliente : ${clientes}" th:value="${cliente.dui_cliente}" th:text="${cliente.dui_cliente} + ' ' + ${cliente.nombres} + ' ' + ${cliente.apellidos}">
+		    </option>
+		</select> 
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="nombre">Tasa de Interes</label>
+    	<select th:field="*{tasainteres.id_tasa_interes}" class="form-control">
+		    <option th:each="tasainteres : ${tasasinteres}" th:value="${tasainteres.id_tasa_interes}" th:text="${tasainteres.tasa}">
+		    </option>
+		</select> 
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Monto</label>
+    	<input type="text" class="form-control" id="monto" placeholder="Monto" th:field="*{monto}"/>
+    	<small th:if="${#fields.hasErrors('monto')}" th:errors="*{monto}" class="form-text text-danger"></small>
+  	</div>  
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Fecha limite</label>
+    	<input type="text" class="form-control" id="fecha_limite" placeholder="dd/mm/aaaa" th:field="*{fecha_limite}"/>
+    	<small th:if="${#fields.hasErrors('fecha_limite')}" th:errors="*{fecha_limite}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="numero_cuenta">Saldo</label>
+    	<input type="text" class="form-control" id="saldo" placeholder="Saldo" th:field="*{saldo}"/>
+    	<small th:if="${#fields.hasErrors('saldo')}" th:errors="*{saldo}" class="form-text text-danger"></small>
+  	</div>
+  	<div class="form-group col-lg-4">
+    	<label for="codigo">Estado</label>
+    	<select class="form-control" th:field="*{estado}">
+			    <option th:value="'A'" th:text="Activo"></option>
+			    <option th:value="'I'" th:text="Inactivo"></option>
+		</select>
+    	<small th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}" class="form-text text-danger"></small>
+  	</div> 	
+  	<input type="submit" class="btn btn-primary" value="Guardar" />
+</form>
+</div>
+</div>
+
+<th:block th:include="./layouts/layout :: footer"></th:block>

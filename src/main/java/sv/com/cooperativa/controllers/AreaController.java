@@ -43,8 +43,8 @@ public class AreaController {
 		return "area/crear";
 	}
 	
-	@RequestMapping(value="/area/eliminar/{id}", method=RequestMethod.DELETE)
-	public String eliminar(@PathVariable(value="id") Long id_area, RedirectAttributes flash)
+	@RequestMapping(value="/area/eliminar/{id}", method=RequestMethod.GET)
+	public String eliminar(@PathVariable(value="id") Integer id_area, RedirectAttributes flash)
 	{
 		areaService.delete(id_area);		
 		flash.addFlashAttribute("success","Area eliminada con exito");
@@ -64,7 +64,7 @@ public class AreaController {
 	}
 	
 	@RequestMapping(value="area/modificar/{id}", method=RequestMethod.GET)
-	public String modificar(@PathVariable(value="id") Long id_area, RedirectAttributes flash, Map<String, Object> model)
+	public String modificar(@PathVariable(value="id") Integer id_area, RedirectAttributes flash, Map<String, Object> model)
 	{
 		Area area = null;
 		area = areaService.findOne(id_area);
@@ -74,7 +74,7 @@ public class AreaController {
 	}
 	
 	@RequestMapping(value="area/ver/{id}", method=RequestMethod.GET)
-	public String ver(@PathVariable(value="id") Long id_area, Map<String, Object> model)
+	public String ver(@PathVariable(value="id") Integer id_area, Map<String, Object> model)
 	{
 		Area area = areaService.findOne(id_area);
 		model.put("area", area);

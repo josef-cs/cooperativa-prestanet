@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,12 +21,10 @@ import javax.validation.constraints.NotNull;
 @Table(name="cargos")
 public class Cargo
 {
-
 @Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-@NotNull
-@NotEmpty
-private Long id_cargo;
+@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "cargo_seq")
+@SequenceGenerator(name = "cargo_seq", sequenceName = "cargo_seq", allocationSize=1)
+private Integer id_cargo;
 @NotNull
 @NotEmpty
 private String titulo;
@@ -33,16 +32,15 @@ private String titulo;
 @NotEmpty
 private String descripcion;
 @NotNull
-@NotEmpty
-private double sueldo_base;
+private Double sueldo_base;
 @JoinColumn(name="area_id")
 @OneToOne(fetch=FetchType.LAZY)
 private Area area;
 
-public Long getId_cargo() {
+public Integer getId_cargo() {
 	return id_cargo;
 }
-public void setId_cargo(Long id_cargo) {
+public void setId_cargo(Integer id_cargo) {
 	this.id_cargo = id_cargo;
 }
 public String getTitulo() {
@@ -57,10 +55,10 @@ public String getDescripcion() {
 public void setDescripcion(String descripcion) {
 	this.descripcion = descripcion;
 }
-public double getSueldo_base() {
+public Double getSueldo_base() {
 	return sueldo_base;
 }
-public void setSueldo_base(double sueldo_base) {
+public void setSueldo_base(Double sueldo_base) {
 	this.sueldo_base = sueldo_base;
 }
 

@@ -7,22 +7,33 @@
 			<thead>
 				<tr>
 					<th>DUI</th>
+					<th>Cargo</th>
 					<th>Nombres</th>
 					<th>Apellidos</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Celular</th>
+					<th>Estado</th>
 					<th colspan="3">Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cliente :${clientes}">
-					<td th:text="${cliente.dui_cliente}"/>
-					<td th:text="${cliente.nombres}"/>
-					<td th:text="${cliente.apellidos}"/>
-					<td><a th:href="@{/cliente/ver/} + ${cliente.dui_cliente}">Ver</a></td>
-					<td><a th:href="@{/cliente/modificar/} + ${cliente.dui_cliente}">Modificar</a></td>
-					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/cliente/eliminar/} + ${cliente.dui_cliente}">Eliminar</a></td>
+				<tr th:each="empleado :${empleados}">
+					<td th:text="${empleado.dui_empleado}"/>
+					<td th:text="${empleado.cargo.titulo}"/>
+					<td th:text="${empleado.apellidos} +' '+${empleado.nombres}"/>
+					<td th:text="${empleado.direccion}"/>
+					<td th:text="${empleado.telefono}"/>
+					<td th:text="${empleado.celular}"/>
+					<td th:text="${empleado.celular}"/>
+					<td th:text="${empleado.estado}"/>
+					<td><a th:href="@{/empleado/ver/} + ${empleado.dui_empleado}">Ver</a></td>
+					<td><a th:href="@{/empleado/modificar/} + ${empleado.dui_empleado}">Modificar</a></td>
+					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/empleado/eliminar/} + ${empleado.dui_empleado}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
+		<a href="/empleado/crear">Nuevo empleado</a>
 	</div>
 </div>
 

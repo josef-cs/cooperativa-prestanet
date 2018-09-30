@@ -1,0 +1,14 @@
+<th:block th:include="./layouts/layout :: head"></th:block>
+<th:block th:include="./layouts/layout :: header"></th:block>
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<ul>
+<li th:text="'N° de Cuota: ' + ${pago.cuota.numero_cuota}">
+<li th:text="'# de prestamo: ' + ${pago.prestamo.id_prestamo}">
+<li th:text="'Monto: $' + ${pago.monto}">
+<li th:text="'Empleado que recibió: ' + ${pago.empleado.nombres} + ' ' + ${pago.empleado.apellidos}">
+<li th:text="'Fecha: ' + ${pago.cuota.fecha_limite}">
+</ul>
+</div>
+</div>
+<th:block th:include="./layouts/layout :: footer"></th:block>

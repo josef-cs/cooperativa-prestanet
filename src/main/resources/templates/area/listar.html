@@ -19,10 +19,11 @@
 					<td th:text="${area.descripcion}"/>
 					<td><a th:href="@{/area/ver/} + ${area.id_area}">Ver</a></td>
 					<td><a th:href="@{/area/modificar/} + ${area.id_area}">Modificar</a></td>
-					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/cliente/eliminar/} + ${area.id_area}">Eliminar</a></td>
+					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/area/eliminar/} + ${area.id_area}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
+		<a th:href="@{/area/crear}">Nueva area</a>
 	</div>
 </div>
 

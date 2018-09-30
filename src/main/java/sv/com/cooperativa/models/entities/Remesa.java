@@ -27,10 +27,8 @@ private Long id_remesa;
 @DateTimeFormat(pattern="dd-MM-yyyy")
 private Date fecha_deposito;
 @NotNull
-@NotEmpty
 private double monto;
 @NotNull
-@NotEmpty
 private String estado;
 
 public Cliente getCliente() {

@@ -1,9 +1,13 @@
 <th:block th:include="./layouts/layout :: head"></th:block>
 <th:block th:include="./layouts/layout :: header"></th:block>
-
-<div class="bg-white" style="padding:50px; min-height:65%;">
-	<div class="container bg-white table-responsive">
-		<table class="table-condensed table table-striped table-bordered">
+<div class="bg-white" style="width:100%; padding:50px">
+<div class="container bg-white">
+<ul>
+<li th:text="'ID: ' + ${area.id_area}">
+<li th:text="'NOMBRE: ' + ${area.nombre}">
+<li th:text="'AREA: ' + ${area.descripcion}">
+</ul>
+<table class="table-condensed table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -15,19 +19,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cargo :${cargos}">
+				<tr th:each="cargo :${area.cargos}">
 					<td th:text="${cargo.id_cargo}"/>
 					<td th:text="${cargo.area.nombre}"/>
 					<td th:text="${cargo.titulo}"/>
 					<td th:text="${cargo.descripcion}"/>
 					<td th:text="'$'+${cargo.sueldo_base}"/>
-					<td><a th:href="@{/cargo/modificar/} + ${cargo.id_cargo}">Modificar</a></td>
+					<td><a th:href="@{/cargo/eliminar/} + ${cargo.id_cargo}">Modificar</a></td>
 					<td><a onclick="return confirm('¿Desea eliminarlo?')" th:href="@{/cargo/eliminar/} + ${cargo.id_cargo}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<a th:href="@{/cargo/crear}">Nuevo cargo</a>
-	</div>
 </div>
-
+</div>
 <th:block th:include="./layouts/layout :: footer"></th:block>
